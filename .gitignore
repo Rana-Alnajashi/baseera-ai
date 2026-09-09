@@ -1,0 +1,11 @@
+# Virtual environment
+.venv/
+
+# Environment variables (Prevents leaking API keys)
+.env
+
+# Python cache and OS files
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/

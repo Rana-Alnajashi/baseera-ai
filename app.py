@@ -9,24 +9,37 @@ import base64
 import zlib
 import requests
 import re
+import uuid
+import streamlit as st
 from weasyprint import HTML
 from websockets.sync.client import connect
 from websockets.exceptions import ConnectionClosed
 
 
-import os
-import streamlit as st
-
-# Retrieve password from Render environment variables
-password = os.getenv("PASSWORD", "default_fallback")
-
-access_code = st.text_input("Enter Access Code", type="password")
-if access_code != password:
-    st.warning("Please enter the authorized access code to view Baseera AI.")
-    st.stop()
 
 
 st.set_page_config(page_title="Baseera AI OSINT", layout="wide")
+
+
+# Initialize session state for authentication
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+# Lock the app if not authenticated
+if not st.session_state.authenticated:
+    st.subheader("🔒 Restricted Access")
+    password = os.getenv("PASSWORD", "default_fallback")
+    access_code = st.text_input("Enter Access Code", type="password")
+    
+    if access_code:
+        if access_code == password:
+            st.session_state.authenticated = True
+            st.rerun()
+        else:
+            st.error("Incorrect access code.")
+    st.stop()
+
+
 st.title("Baseera AI: Due Diligence Agent")
 
 # Initialize Session State Variables

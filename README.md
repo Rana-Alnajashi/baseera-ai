@@ -63,7 +63,7 @@ Baseera utilizes a graph-based state machine to route data between specialized L
 
 ## Live Demo & Deployment
 
-You can explore the live, production-deployed version of the platform here:
+You can explore the live, production-deployed version of baseera here:
 
 * **Application URL:** https://baseera-web.onrender.com
 * **Access Note:** The live environment is password-protected. (if you are interested contact me directly for access)

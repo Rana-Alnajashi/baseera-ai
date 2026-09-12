@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import pandas as pd
 import io
+import os
 import markdown
 import uuid
 import base64
@@ -88,9 +89,17 @@ with st.sidebar:
         st.session_state.thread_id = str(uuid.uuid4()) # Reset for new run
 
 # Phase 1: Run Planner
+api_url = os.getenv("API_URL", "localhost:8000")
+if "onrender.com" in api_url or "https://" in api_url:
+    ws_base = api_url.replace("https://", "wss://").replace("http://", "ws://")
+else:
+    ws_base = f"ws://{api_url}"
+ws_url = f"{ws_base}/ws/diligence"
+
+# Phase 1: Run Planner
 if st.session_state.workflow_status == "running_planner":
     with st.spinner("Generating MECE Issue Tree..."):
-        with connect("ws://localhost:8000/ws/diligence") as websocket:
+        with connect(ws_url) as websocket:
             websocket.send(json.dumps({
                 "action": "start",
                 "thread_id": st.session_state.thread_id,

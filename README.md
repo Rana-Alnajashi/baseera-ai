@@ -2,6 +2,7 @@
 
 Baseera is an enterprise-grade, multi-agent AI system designed to automate strategic due diligence and market research. Built for high-stakes consulting workflows, it translates ambiguous research goals into custom, MECE-compliant issue trees and executes parallel Open-Source Intelligence (OSINT) gathering.
 
+
 ## The Generative AI Engine
 
 Baseera goes beyond standard Retrieval-Augmented Generation (RAG) by applying generative reasoning at every stage of the pipeline:
@@ -58,3 +59,11 @@ Baseera utilizes a graph-based state machine to route data between specialized L
     ```
 4. **Access the Application:**
    Open your browser and navigate to `http://localhost:8501`.
+
+
+## Live Demo & Deployment
+
+You can explore the live, production-deployed version of the platform here:
+
+* **Application URL:** https://baseera-web.onrender.com
+* **Access Note:** The live environment is password-protected. (if you are interested contact me directly for access)

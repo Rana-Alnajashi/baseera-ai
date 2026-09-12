@@ -13,6 +13,19 @@ from weasyprint import HTML
 from websockets.sync.client import connect
 from websockets.exceptions import ConnectionClosed
 
+
+import os
+import streamlit as st
+
+# Retrieve password from Render environment variables
+password = os.getenv("PASSWORD", "default_fallback")
+
+access_code = st.text_input("Enter Access Code", type="password")
+if access_code != password:
+    st.warning("Please enter the authorized access code to view Baseera AI.")
+    st.stop()
+
+
 st.set_page_config(page_title="Baseera AI OSINT", layout="wide")
 st.title("Baseera AI: Due Diligence Agent")
 

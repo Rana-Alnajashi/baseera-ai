@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+websockets
+streamlit
+langchain-openai
+langgraph
+pydantic
+tavily-python
+youtube-transcript-api
+weasyprint
+markdown
+requests
+python-dotenv
+pandas

@@ -138,7 +138,7 @@ if st.session_state.workflow_status == "running_research":
     # 2. A status container to show a spinning progress bar and live node logs
     with st.status(" Launching Parallel OSINT Agents...", expanded=True) as status_box:
         
-        with connect("ws://localhost:8000/ws/diligence") as websocket:
+        with connect(ws_url) as websocket:
             websocket.send(json.dumps({
                 "action": "resume",
                 "thread_id": st.session_state.thread_id,

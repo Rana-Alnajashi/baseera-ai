@@ -15,37 +15,7 @@ Baseera goes beyond standard Retrieval-Augmented Generation (RAG) by applying ge
 
 Baseera utilizes a graph-based state machine to route data between specialized LLM agents, featuring a Human-in-the-Loop (HITL) pause for steering before final synthesis.
 
-    ```mermaid
-    graph TD
-        Start((Start))
-        Planner[planner_node<br/><i>Generates MECE Issue Tree</i>]
-        Review[plan_review_node<br/><i>Human-in-the-Loop Approval</i>]
-        
-        subgraph Parallel OSINT Domains
-            Wrapper[domain_wrapper_node]
-            Extractor[research_extraction<br/><i>Generates Structured Claims</i>]
-            Verifier[fact_checking<br/><i>LLM Verifies Evidence</i>]
-            
-            Wrapper --> Extractor
-            Extractor --> Verifier
-        end
-
-        Synthesizer[synthesizer_node<br/><i>Cross-Domain Analysis</i>]
-        Writer[report_writer_node<br/><i>Generates Final Markdown Report</i>]
-        End((End))
-
-        Start --> Planner
-        Planner --> Review
-        Review -- "route_to_subgraphs" --> Wrapper
-        Verifier --> Synthesizer
-        Synthesizer --> Writer
-        Writer --> End
-
-        classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
-        classDef special fill:#e1d5e7,stroke:#9673a6,stroke-width:2px;
-        class Planner,Extractor,Verifier,Synthesizer,Writer special;
-    ```
-
+![Architecture Diagram](images/stateGraph.png)
 
 ## Tech Stack
 * **AI Orchestration & Logic:** LangGraph, LangChain, OpenAI (GPT-4o-mini), Pydantic
